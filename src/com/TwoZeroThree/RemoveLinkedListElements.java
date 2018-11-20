@@ -51,6 +51,16 @@ public class RemoveLinkedListElements {
         delNode.next = null;
     }
 
+    public ListNode removeElementsRecursive(ListNode head, int val) {
+        if (head == null) {
+            return null;
+        }
+
+        head.next = removeElementsRecursive(head.next, val);
+
+        return head.val == val ? head.next : head;
+    }
+
     private class ListNode {
         int val;
         ListNode next;
