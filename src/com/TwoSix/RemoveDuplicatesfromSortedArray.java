@@ -5,10 +5,10 @@ package com.TwoSix;
  */
 public class RemoveDuplicatesfromSortedArray {
     public int removeDuplicates(int[] nums) {
-        int i = 0, len = nums.length;
-        for (int j = i + 1; j < len && nums[i] != nums[len - 1]; j++) {
-            if (nums[i] < nums[j]) {
-                nums[i + 1] = nums[j];
+        int i = 0;
+        for (int n : nums) {
+            if (nums[i] < n) {
+                nums[i + 1] = n;
                 i++;
             }
         }
