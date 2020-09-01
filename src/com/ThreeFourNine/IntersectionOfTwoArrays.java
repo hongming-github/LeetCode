@@ -9,26 +9,25 @@ import java.util.TreeSet;
  */
 public class IntersectionOfTwoArrays {
     public int[] intersection(int[] nums1, int[] nums2) {
-
         TreeSet<Integer> set = new TreeSet<>();
 
         for (int num1 : nums1) {
             set.add(num1);
         }
 
-        List<Integer> resultList = new ArrayList<>();
+        TreeSet<Integer> resultSet = new TreeSet<>();
 
         for (int num2 : nums2) {
             if (set.contains(num2)) {
-                resultList.add(num2);
-                set.remove(num2);
+                resultSet.add(num2);
             }
         }
 
-        int[] result = new int[resultList.size()];
+        int[] result = new int[resultSet.size()];
 
-        for (int i = 0; i < resultList.size(); i++) {
-            result[i] = resultList.get(i);
+        int index = 0;
+        for (Integer res : resultSet) {
+            result[index++] = res;
         }
 
         return result;

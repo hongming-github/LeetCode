@@ -22,18 +22,16 @@ public class IntersectionOfTwoArraysII {
         ArrayList<Integer> resultList = new ArrayList<>();
 
         for (int num2 : nums2) {
-            if (map.containsKey(num2)) {
+            if (map.containsKey(num2) && map.get(num2) > 0) {
                 resultList.add(num2);
                 map.put(num2, map.get(num2) - 1);
-                if (map.get(num2) == 0)
-                    map.remove(num2);
             }
         }
 
         int[] result = new int[resultList.size()];
-
-        for (int i = 0; i < resultList.size(); i++) {
-            result[i] = resultList.get(i);
+        int index = 0;
+        for (Integer num : resultList) {
+            result[index++] = num;
         }
 
         return result;
