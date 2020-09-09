@@ -14,11 +14,12 @@ public class ContainsDuplicateII {
                 return true;
             } else {
                 record.add(nums[i]);
-                if (record.size() > k) {
+                if (record.size() > k)
                     record.remove(nums[i - k]);
-                }
+
             }
         }
         return false;
     }
+
 }
