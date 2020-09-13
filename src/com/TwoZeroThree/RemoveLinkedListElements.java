@@ -29,20 +29,18 @@ public class RemoveLinkedListElements {
     }
 
     public ListNode removeElementsWithDummyHead(ListNode head, int val) {
-        if (head != null) {
-            ListNode dummyHead = new ListNode(0);
-            dummyHead.next = head;
-            ListNode previousNode = dummyHead;
-            while (previousNode.next != null) {
-                if (previousNode.next.val == val) {
-                    removeNode(previousNode, val);
-                } else {
-                    previousNode = previousNode.next;
-                }
+        if (head == null) return null;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode previousNode = dummyHead;
+        while (previousNode.next != null) {
+            if (previousNode.next.val == val) {
+                removeNode(previousNode, val);
+            } else {
+                previousNode = previousNode.next;
             }
-            return dummyHead.next;
         }
-        return head;
+        return dummyHead.next;
     }
 
     private void removeNode(ListNode node, int val) {
