@@ -12,8 +12,7 @@ public class EvaluateReversePolishNotation {
             if ("+".equals(s)) {
                 stack.push((stack.pop() + stack.pop()));
             } else if ("-".equals(s)) {
-                int b = stack.pop(), a = stack.pop();
-                stack.push(a - b);
+                stack.push(-stack.pop() + stack.pop());
             } else if ("*".equals(s)) {
                 stack.push(stack.pop() * stack.pop());
             } else if ("/".equals(s)) {
