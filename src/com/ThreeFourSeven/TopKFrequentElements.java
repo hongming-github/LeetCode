@@ -6,42 +6,32 @@ import java.util.*;
  * Created by zhm on 2018/12/4.
  */
 public class TopKFrequentElements {
-    public List<Integer> topKFrequent(int[] nums, int k) {
-
-        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> freq = new HashMap<>();
 
         for (int num : nums) {
-            if (treeMap.containsKey(num)) {
-                treeMap.put(num, treeMap.get(num) + 1);
-            } else {
-                treeMap.put(num, 1);
-            }
+            freq.put(num, freq.getOrDefault(num, 0) + 1);
         }
 
-        PriorityQueue<Integer> pq = new PriorityQueue<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer a, Integer b) {
-                return treeMap.get(a) - treeMap.get(b);
-            }
-        });
+        PriorityQueue<Integer> pq = new PriorityQueue<>(k, (a, b) -> freq.get(a) - freq.get(b));
 
-        for (int key : treeMap.keySet()) {
+        for (int key : freq.keySet()) {
             if (pq.size() < k) {
                 pq.add(key);
             } else {
-                if (treeMap.get(key).compareTo(treeMap.get(pq.peek())) > 0) {
+                if (freq.get(key).compareTo(freq.get(pq.peek())) > 0) {
                     pq.remove();
                     pq.add(key);
                 }
             }
         }
 
-        List<Integer> resultList = new ArrayList<>();
+        int[] result = new int[k];
 
-        while (!pq.isEmpty()) {
-            resultList.add(pq.remove());
+        for (int i = 0; i < result.length; i++) {
+            result[i] = pq.remove();
         }
 
-        return resultList;
+        return result;
     }
 }

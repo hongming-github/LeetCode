@@ -19,7 +19,6 @@ public class PerfectSquares {
             Pair<Integer, Integer> pair = queue.poll();
             int num = pair.getKey();
             int step = pair.getValue();
-
             for (int i = 1; ; i++) {
                 int a = num - i * i;
                 if (a < 0) break;
@@ -30,6 +29,20 @@ public class PerfectSquares {
                 }
             }
         }
-        return -1;
+        return 0;
     }
+
+    /* dp solution
+    public int numSquares(int n) {
+        int[] dp = new int[n+1];
+
+        for(int i = 0; i <= n; i++){
+            dp[i] = i;
+            for(int j = 1; j*j <= i; j++){
+                dp[i] = Math.min(dp[i - j * j] + 1, dp[i]);
+            }
+        }
+        return dp[n];
+    }
+    */
 }
